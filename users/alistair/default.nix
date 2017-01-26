@@ -10,10 +10,10 @@ let
   dotfiles = stdenv.mkDerivation {
     name = "alibabzo-dotfiles";
     src = fetchFromGitHub {
-      rev = "84c6e04eb731e503cb1ec95a58432137425237ac";
+      rev = "66dbdc47faa403917cd03b77e60ef3488404c6dd";
       repo = "dotfiles";
       owner = "alibabzo";
-      sha256 = "1pmvhmc23rm1a30xfp3qb918zrs7qnw6f9196lxv3z4vhrgh2f6h";
+      sha256 = "1mbxkj3fl06a2r3ia6n4kyylz4qlbg1pvl6cxwyw34rr7lfxz5wv";
     };
     installPhase = copyFilesInstallPhase;
   };
