@@ -7,8 +7,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-desktop.nix
-      ./xserver.nix
+      ./hardware.nix
+      ./desktop.nix
       ./fancontrol.nix
     ];
 
@@ -58,6 +58,7 @@
     neovim
     wget
     zsh
+    ((callPackage ./pkgs/nix-home) { })
   ];
 
   systemd.generator-packages = [
