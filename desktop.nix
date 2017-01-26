@@ -36,10 +36,15 @@
       [ thunar_volman thunar-archive-plugin tumbler ];
     };
 
-    windowManager.default = "i3";
-    windowManager.i3.enable = true;
-    windowManager.i3.package = pkgs.i3-gaps;
+    windowManager.default = "xmonad";
+    windowManager.xmonad.enable = true;
+    windowManager.xmonad.enableContribAndExtras = true;
   };
 
   environment.variables.BROWSER = "chromium";
+
+  environment.systemPackages = with pkgs; [
+    haskellPackages.xmobar
+    haskellPackages.xmonad
+  ];
 }
