@@ -7,33 +7,13 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware.nix
+      ./hardware/a-desktop.nix
       ./desktop.nix
-      ./fancontrol.nix
     ];
-
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      timeout = 1;
-    };
-
-    kernelModules = [
-      "nct6775"
-      "coretemp"
-    ];
-    kernelParams = [
-      "quiet"
-      "loglevel=3"
-      "vga=current"
-    ];
-  };
 
   hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
-  networking.hostName = "a-desktop"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
@@ -50,19 +30,13 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     git
-    i3blocks
     python3
     python35Packages.neovim
     python35Packages.pip
     tree
     neovim
     wget
-    zsh
     ((callPackage ./pkgs/nix-home) { })
-  ];
-
-  systemd.generator-packages = [
-    pkgs.systemd-cryptsetup-generator
   ];
 
   # List services that you want to enable:
@@ -108,8 +82,7 @@
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.09";
 
-  programs.zsh.enable = true;
-  users.defaultUserShell = "/run/current-system/sw/bin/zsh";
-  programs.zsh.promptInit = "";
+  programs.fish.enable = true;
+  users.defaultUserShell = "/run/current-system/sw/bin/fish";
   nixpkgs.config.allowUnfree = true;
 }
