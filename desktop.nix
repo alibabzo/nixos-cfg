@@ -24,11 +24,11 @@
       '' ];
 
     displayManager.lightdm.enable = true;
+    displayManager.lightdm.greeter.enable = false;
     displayManager.lightdm.autoLogin = {
       enable = true;
       user = "alistair";
     };
-
     desktopManager.default = "xfce";
     desktopManager.xfce = {
       enable = true;
@@ -43,8 +43,12 @@
 
   environment.variables.BROWSER = "chromium";
 
+  environment.sessionVariables = { GTK_DATA_PREFIX="${config.system.path}"; };
+
   environment.systemPackages = with pkgs; [
     haskellPackages.xmobar
+    arc-theme
+    paper-icon-theme
     haskellPackages.xmonad
   ];
 }

@@ -29,14 +29,8 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    git
-    python3
-    python35Packages.neovim
-    python35Packages.pip
     tree
-    neovim
     wget
-    ((callPackage ./pkgs/nix-home) { })
   ];
 
   # List services that you want to enable:
@@ -54,15 +48,6 @@
   };
 
   services.udisks2.enable = true;
-
-  # Enable redshift
-  services.redshift = {
-    enable = true;
-    latitude = "51.5";
-    longitude = "-2.6";
-    temperature.day = 5700;
-    temperature.night = 3500;
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.alistair = {
@@ -85,4 +70,6 @@
   programs.fish.enable = true;
   users.defaultUserShell = "/run/current-system/sw/bin/fish";
   nixpkgs.config.allowUnfree = true;
+
+  virtualisation.virtualbox.host.enable = true;
 }
